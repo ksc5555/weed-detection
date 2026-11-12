@@ -1,0 +1,9 @@
+# virtual environment (recreate with: pip install -r requirements.txt)
+.venv/
+# dataset images (recreate with: python download_data.py)
+data/
+# Python cache files
+__pycache__/
+*.pyc
+# Mac system files
+.DS_Store

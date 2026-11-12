@@ -1,0 +1,6 @@
+# Install with: pip install -r requirements.txt
+numpy          # array math
+matplotlib     # plotting
+scikit-image   # image processing (same as CMPT 487)
+datasets       # downloads the dataset
+ipykernel      # lets VS Code run # %% cells
