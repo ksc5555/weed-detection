@@ -7,3 +7,4 @@ __pycache__/
 *.pyc
 # Mac system files
 .DS_Store
+note.txt
