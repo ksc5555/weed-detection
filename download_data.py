@@ -7,24 +7,25 @@ import os
 from datasets import load_dataset
 
 # images go in weed-detection/data/
-OUT_DIR = "data"
+OUTPUT_FOLDER = "data"
 
 # download 5,539 images (~1.7 GB, slow)
-ds = load_dataset("Project-AgML/plant_seedlings_aarhus", split="train")
-# species names, e.g. names[1] = "charlock"
-names = ds.features["label"].names
+dataset = load_dataset("Project-AgML/plant_seedlings_aarhus", split="train")
+# species names, e.g. species_names[1] = "charlock"
+species_names = dataset.features["label"].names
 
-# i = image number, row = {image, label}
-for i, row in enumerate(ds):
+# image_number = 0, 1, 2, ...   sample = {"image": ..., "label": ...}
+for image_number, sample in enumerate(dataset):
     # e.g. data/charlock
-    folder = os.path.join(OUT_DIR, names[row["label"]])
+    species_folder = os.path.join(OUTPUT_FOLDER, species_names[sample["label"]])
     # create folder if it doesn't exist
-    os.makedirs(folder, exist_ok=True)
+    os.makedirs(species_folder, exist_ok=True)
     # save as 00012.png
-    row["image"].save(os.path.join(folder, f"{i:05d}.png"))
+    image_path = os.path.join(species_folder, f"{image_number:05d}.png")
+    sample["image"].save(image_path)
     # show progress every 500 images
-    if i % 500 == 0:
-        print(f"saved {i}/{len(ds)}")
+    if image_number % 500 == 0:
+        print(f"saved {image_number}/{len(dataset)}")
 
 # should list 12 species folders
-print("done:", sorted(os.listdir(OUT_DIR)))
+print("done:", sorted(os.listdir(OUTPUT_FOLDER)))

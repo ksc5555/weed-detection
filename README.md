@@ -12,7 +12,7 @@ pip install -r requirements.txt
 python download_data.py
 ```
 
-Then open `explore_step1.py` in VS Code and run the `# %%` cells.
+Then open `segment_plants.py` in VS Code and run the `# %%` cells.
 
 ## Status
 
